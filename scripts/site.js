@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   const images = document.querySelectorAll('img[data-src]');
 
-  for (var i = 0; i < images.length; i++) {
+  for (let i = 0; i < images.length; i++) {
     core.ImageLoader.load(images[i], {
       load: true
     });
