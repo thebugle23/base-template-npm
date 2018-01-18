@@ -20,8 +20,6 @@ const config = {
   plugins: [
     new webpack.optimize.DedupePlugin(),
 
-    new webpack.optimize.OccurenceOrderPlugin(),
-
     new webpack.DefinePlugin({
       '__DEBUG__': JSON.stringify(!IS_PRODUCTION)
     }),
@@ -36,7 +34,19 @@ const config = {
           except: ['_'] // don't mangle lodash
       } : false
     })
-  ]
+  ],
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader', // 'babel-loader' is also a valid name to reference
+        query: {
+          presets: ['env']
+        }
+      }
+    ]
+  }
 }
 
 module.exports = config;
